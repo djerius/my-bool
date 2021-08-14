@@ -1,0 +1,38 @@
+*** Bool_return_Bool.c	2021-08-14 16:36:05.256364726 -0400
+--- Bool_return_int.c	2021-08-14 16:38:31.571916228 -0400
+***************
+*** 176,191 ****
+      {
+  	const char*	str_name = (const char *)SvPV_nolen(ST(0))
+  ;
+  	const char*	str_class = (const char *)SvPV_nolen(ST(1))
+  ;
+! 	Bool	RETVAL;
+  	char*	str_type_return;
+  
+  	RETVAL = XrmGetResource(str_name, str_class, &str_type_return);
+! 	ST(0) = boolSV(RETVAL);
+! 	XSprePUSH;	EXTEND(SP,1);
+  	PUSHs(sv_newmortal());
+  	sv_setpv((SV*)ST(1), str_type_return);
+      }
+      XSRETURN(2);
+  }
+--- 176,192 ----
+      {
+  	const char*	str_name = (const char *)SvPV_nolen(ST(0))
+  ;
+  	const char*	str_class = (const char *)SvPV_nolen(ST(1))
+  ;
+! 	int	RETVAL;
+! 	dXSTARG;
+  	char*	str_type_return;
+  
+  	RETVAL = XrmGetResource(str_name, str_class, &str_type_return);
+! 	XSprePUSH; PUSHi((IV)RETVAL);
+! 	EXTEND(SP,1);
+  	PUSHs(sv_newmortal());
+  	sv_setpv((SV*)ST(1), str_type_return);
+      }
+      XSRETURN(2);
+  }

@@ -14,7 +14,7 @@ int XrmGetResource( const char *str_name, const char *str_class, char** str_type
 
 MODULE = My::Bool                PACKAGE = My::Bool
 
-Bool
+int
 XrmGetResource( str_name, str_class, OUTLIST char* str_type_return )
     const char* str_name
     const char* str_class
